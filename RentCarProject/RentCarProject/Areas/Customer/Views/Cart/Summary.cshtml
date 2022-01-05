@@ -1,0 +1,199 @@
+﻿@model RentCarProject.Models.ViewModels.ReservationCartVM
+@{
+    ViewData["Title"] = "Summary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<form method="post">
+    <br />
+    <div class="backgroundWhiteBorder">
+        <div class="container">
+            <div class="card">
+                <div class="card-header bg-dark text-light ml-0 row container">
+                    <div class="col-6">
+                        <i class="fa fa-shopping-cart"></i> &nbsp;
+                        Rezervasyon Bilgileri
+                    </div>
+                    <div class="col-6 text-right">
+                        <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="btn btn-outline-info btn-sm">Rezervasyonlarıma Git</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="container rounded p-2">
+                        <div class="row">
+                            <div class="col-12 col-lg-6 pb-4">
+                                <div class="row">
+                                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                        <span class="text-info">Kiralama Bilgileri</span>
+                                    </h4>
+                                </div>
+                                <div class="row my-1">
+                                    <div class="col-3">
+                                        <label>Adınız</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input asp-for="OrderHeader.Name" type="text" class="form-control" />
+                                        <span asp-validation-for="OrderHeader.Name" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row my-1">
+                                    <div class="col-3">
+                                        <label>Soyadınız</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input asp-for="OrderHeader.Surname" type="text" class="form-control" />
+                                        <span asp-validation-for="OrderHeader.Surname" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row my-1">
+                                    <div class="col-3">
+                                        <label>Telefon</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input asp-for="OrderHeader.PhoneNumber" type="text" class="form-control" />
+                                        <span asp-validation-for="OrderHeader.PhoneNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row my-1">
+                                    <div class="col-3">
+                                        <label>Adres</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input asp-for="OrderHeader.Adres" type="text" class="form-control" />
+                                        <span asp-validation-for="OrderHeader.Adres" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row my-1">
+                                    <div class="col-3">
+                                        <label>Alış tarihi</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input asp-for="OrderHeader.RentDateStart" type="text" class="form-control" />
+                                        <span asp-validation-for="OrderHeader.RentDateStart" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row my-1">
+                                    <div class="col-3">
+                                        <label>İade Tarihi</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input asp-for="OrderHeader.RentDateEnd" type="text" class="form-control" />
+                                        <span asp-validation-for="OrderHeader.RentDateEnd" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row my-1">
+                                    <div class="col-3">
+                                        <label>Veriliş Km(Bu alanı Doldurmayınız)</label>
+
+                                    </div>
+                                    <div class="col-9">
+                                        <input asp-for="OrderHeader.FirstKM" type="text" class="form-control" />
+                                        <span asp-validation-for="OrderHeader.FirstKM" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row my-1">
+                                    <div class="col-3">
+                                        <label>Son Km(Bu alanı Doldurmayınız)</label>
+
+                                    </div>
+                                    <div class="col-9">
+                                        <input asp-for="OrderHeader.LastKm" type="text" class="form-control" />
+                                        <span asp-validation-for="OrderHeader.LastKm" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="col-12 col-lg-5 offset-lg-1">
+                                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="text-info">Rezervasyonlar</span>
+                                </h4>
+                                <ul class="list-group mb-3">
+                                    @foreach (var item in Model.ListCart)
+                                    {
+
+                                        <li class="list-group-item d-flex justify-content-between">
+                                            <div>
+                                                <h6 class="my-0">@item.Vehicle.CarName</h6>
+                                                <small class="text-muted">Adet: @item.Count</small>
+                                            </div>
+                                            <span class="text-muted"> @(item.Vehicle.DailyRentalPrice*item.Count) (₺)</span>
+                                        </li>
+                                    }
+                                    <li class="list-group-item d-flex justify-content-between bg-light">
+                                        <small class="text-info">Toplam Tutar (₺)</small>
+                                        <strong class="text-info">@(Model.OrderHeader.OrderTotal) (₺)</strong>
+                                    
+                                    </li>
+                                </ul>
+                                @*<div class="row my1">
+                                        <div class="col-4">
+                                            <label>Kart Adı</label>
+                                        </div>
+                                        <div class="col-8">
+                                            <input asp-for="OrderHeader.Name" type="text" class="form-control" />
+                                            <span asp-validation-for="OrderHeader.Name" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row my1">
+                                        <div class="col-4">
+                                            <label>Kart Numarası</label>
+                                        </div>
+                                        <div class="col-8">
+                                            <input asp-for="OrderHeader.CartNumber" type="text" class="form-control" />
+                                            <span asp-validation-for="OrderHeader.CartNumber" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row my1">
+                                        <div class="col-4">
+                                            <label>Ay</label>
+                                        </div>
+                                        <div class="col-8">
+                                            <input asp-for="OrderHeader.ExpirationMonth" type="text" class="form-control" />
+                                            <span asp-validation-for="OrderHeader.ExpirationMonth" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row my1">
+                                        <div class="col-4">
+                                            <label>Yıl</label>
+                                        </div>
+                                        <div class="col-8">
+                                            <input asp-for="OrderHeader.ExpirationYear" type="text" class="form-control" />
+                                            <span asp-validation-for="OrderHeader.ExpirationYear" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row my1">
+                                        <div class="col-4">
+                                            <label>Güvenlik Kodu</label>
+                                        </div>
+                                        <div class="col-8">
+                                            <input asp-for="OrderHeader.Cvc" type="text" class="form-control" />
+                                            <span asp-validation-for="OrderHeader.Cvc" class="text-danger"></span>
+                                        </div>
+                                    </div>*@
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-12 col-md-8 pt-2">
+                            <p style="color:maroon; font-size:14px;">Tahmini Varış Tarihi: @DateTime.Now.AddDays(7).ToShortDateString() - @DateTime.Now.AddDays(14).ToShortDateString()</p>
+                        </div>
+                        <div class="col-12 col-md-4">
+
+                            <button type="submit" value="Place Order" class="btn btn-success form-control">Siparişi Tamamla</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

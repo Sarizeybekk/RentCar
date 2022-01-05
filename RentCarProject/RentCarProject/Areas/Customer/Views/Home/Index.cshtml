@@ -1,0 +1,26 @@
+﻿
+@model IEnumerable<RentCarProject.Models.Vehicle>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<img src="https://turbowheels.biz/wp-content/uploads/2019/04/59cd284d71c71a06d8b17e46.png" width="100%" height="100%"/>
+
+
+
+
+
+<div class="row">
+    @await Component.InvokeAsync("CategoryList")
+
+
+
+
+    @await Component.InvokeAsync("VehicleList", new { KategoryId = ViewBag.KategoryId })
+
+
+
+
+
+</div>

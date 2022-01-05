@@ -1,0 +1,219 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@using RentCarProject.Diger
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RentCarProject</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
+</head>
+<body>
+    <header>
+        
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-secondary box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">RentCarProject</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (User.IsInRole(SD.Role_Admin))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link " asp-area="Admin" asp-controller="Category" asp-action="Index">Firmalar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " asp-area="Admin" asp-controller="Vehicle" asp-action="Index">Araçlar</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link " asp-area="Admin" asp-controller="User" asp-action="Index">Kullanıcılar</a>
+                            </li>
+
+                        }
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="Admin" asp-controller="Order" asp-action="Index">Kiralanan Araçlar</a>
+                        </li>
+                        @if (HttpContextAccessor.HttpContext.Session.GetInt32(SD.rrReservationCart) != null)
+                        {
+                            <li style="color:white">
+                                <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="nav-link">
+                                    @{
+                                        var count = HttpContextAccessor.HttpContext.Session.GetInt32(SD.rrReservationCart);
+                                    }
+                                    <i class="fas fa-shopping-cart"></i>&nbsp;(@count)
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li style="color:white">
+                                <a href="/Identity/Account/Login" class="nav-link">
+
+                                    <i class="fas fa-shopping-cart"></i>&nbsp;(0)
+                                </a>
+                            </li>
+                        }
+
+                    </ul>
+                    <form class="form-inline" action="/Customer/Home/Search" method="post">
+                        <input name="q" type="text" class="form-control mr-0" placeholder="Arama" />
+                        <button class="btn btn-warning mr-0">Ara</button>
+                    </form>
+
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+      
+            @RenderBody()
+
+        </main>
+    </div>
+
+    <footer class="page-footer font-small mdb-color pt-4">
+
+        <div class="container text-center text-md-left">
+
+            <div class="row text-center text-md-left mt-3 pb-3">
+
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">RentCar Project</h6>
+                    <p>
+             Size en uygun ve konforlu aracı seçerek kiralama yapabilirisniz.
+                    </p>
+                </div>
+
+                <hr class="w-100 clearfix d-md-none">
+
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Firmalar</h6>
+                    <p>
+                        <a href="#!">Enterprise</a>
+                    </p>
+                    <p>
+                        <a href="#!">Turmobil</a>
+                    </p>
+                    <p>
+                        <a href="#!">Air Rent A Car</a>
+                    </p>
+                    <p>
+                        <a href="#!">WindyCar Rental</a>
+                    </p>
+                </div>
+                 <hr class="w-100 clearfix d-md-none">
+
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Araç sınıfları</h6>
+                    <p>
+                        <a href="#!">Otomabil</a>
+                    </p>
+                    <p>
+                        <a href="#!">Suv</a>
+                    </p>
+                    <p>
+                        <a href="#!">Ticari</a>
+                    </p>
+                    <p>
+                        <a href="#!">Karavan</a>
+                    </p>
+                </div>
+
+                <hr class="w-100 clearfix d-md-none">
+
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Bize Ulaşın</h6>
+                    <p>
+                        <i class="fas fa-home mr-3"></i> İzmir Bakırçay Üniversitesi
+                    </p>
+                    <p>
+                        <i class="fas fa-envelope mr-3"></i> 210601688@bakircay.edu.tr
+                    </p>
+                    <p>
+                        <i class="fas fa-phone mr-3"></i> + 0511111
+                    </p>
+                    <p>
+                        <i class="fas fa-print mr-3"></i> + 05222222
+                    </p>
+                </div>
+
+            </div>
+ <hr>
+
+            <div class="row d-flex align-items-center">
+
+                <div class="col-md-7 col-lg-8">
+
+                    <p class="text-center text-md-left">
+                        ©2022 ileri web projesidir
+                            <strong>210601688@bakircay.edu.tr</strong>
+                        </a>
+                    </p>
+
+                </div>
+    
+                <div class="col-md-5 col-lg-4 ml-lg-0">
+
+                    <div class="text-center text-md-right">
+                        <ul class="list-unstyled list-inline">
+                            <li class="list-inline-item">
+                                <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                    <i class="fab fa-google-plus-g"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+ 
+    </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://kit.fontawesome.com/e19c476714.js"></script>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

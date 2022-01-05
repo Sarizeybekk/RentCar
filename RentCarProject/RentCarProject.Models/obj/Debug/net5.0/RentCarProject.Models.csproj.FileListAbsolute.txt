@@ -1,0 +1,12 @@
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Models\bin\Debug\net5.0\RentCarProject.Models.deps.json
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Models\bin\Debug\net5.0\RentCarProject.Models.dll
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Models\bin\Debug\net5.0\ref\RentCarProject.Models.dll
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Models\bin\Debug\net5.0\RentCarProject.Models.pdb
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Models\obj\Debug\net5.0\RentCarProject.Models.csproj.AssemblyReference.cache
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Models\obj\Debug\net5.0\RentCarProject.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Models\obj\Debug\net5.0\RentCarProject.Models.AssemblyInfoInputs.cache
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Models\obj\Debug\net5.0\RentCarProject.Models.AssemblyInfo.cs
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Models\obj\Debug\net5.0\RentCarProject.Models.csproj.CoreCompileInputs.cache
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Models\obj\Debug\net5.0\RentCarProject.Models.dll
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Models\obj\Debug\net5.0\ref\RentCarProject.Models.dll
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Models\obj\Debug\net5.0\RentCarProject.Models.pdb

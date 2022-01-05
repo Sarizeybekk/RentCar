@@ -1,0 +1,12 @@
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Diger\bin\Debug\net5.0\RentCarProject.Diger.deps.json
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Diger\bin\Debug\net5.0\RentCarProject.Diger.dll
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Diger\bin\Debug\net5.0\ref\RentCarProject.Diger.dll
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Diger\bin\Debug\net5.0\RentCarProject.Diger.pdb
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Diger\obj\Debug\net5.0\RentCarProject.Diger.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Diger\obj\Debug\net5.0\RentCarProject.Diger.AssemblyInfoInputs.cache
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Diger\obj\Debug\net5.0\RentCarProject.Diger.AssemblyInfo.cs
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Diger\obj\Debug\net5.0\RentCarProject.Diger.csproj.CoreCompileInputs.cache
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Diger\obj\Debug\net5.0\RentCarProject.Diger.dll
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Diger\obj\Debug\net5.0\ref\RentCarProject.Diger.dll
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Diger\obj\Debug\net5.0\RentCarProject.Diger.pdb
+C:\Users\Sulta\source\repos\RentCarProject\RentCarProject.Diger\obj\Debug\net5.0\RentCarProject.Diger.csproj.AssemblyReference.cache

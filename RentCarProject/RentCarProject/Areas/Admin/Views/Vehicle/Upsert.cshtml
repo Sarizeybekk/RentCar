@@ -1,0 +1,218 @@
+﻿@model RentCarProject.Models.ViewModels.VehicleVM
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var title = "Araç Ekle";
+}
+
+<form method="post" enctype="multipart/form-data">
+    <div class="row p-3 border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @if (Model.Vehicle.Id!=0)
+        {
+            title = "Araç Düzenle";
+            <input type="hidden" asp-for="Vehicle.Id" />
+        }
+
+        <div class="col-12 border-bottom">
+            <h2 class="text-warning">@title</h2>
+        </div>
+        <div class="col-8 pt-4">
+            <div class="form-group row">
+                <div class="col-4">
+                    Ad
+                </div>
+                <div class="col-8">
+                    <input asp-for="Vehicle.CarName" class="form-control" />
+                    <span asp-validation-for="Vehicle.CarName" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                    Araç Model
+                </div>
+                <div class="col-8">
+                    <input asp-for="Vehicle.CarModel" class="form-control" />
+                    <span asp-validation-for="Vehicle.CarModel" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                    sürüş lisans yaşı
+                </div>
+                <div class="col-8">
+                    <input asp-for="Vehicle.DriverLisenseAge" class="form-control" />
+                    <span asp-validation-for="Vehicle.DriverLisenseAge" class="text-danger"></span>
+                </div>
+            </div>
+
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                    Minimum Yaş Sınırı
+                </div>
+                <div class="col-8">
+                    <input asp-for="Vehicle.MinimumAgeLimit" class="form-control" />
+                    <span asp-validation-for="Vehicle.MinimumAgeLimit" class="text-danger"></span>
+                </div>
+            </div>
+
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                    günlük km limiti
+                </div>
+                <div class="col-8">
+                    <input asp-for="Vehicle.DailyKmLimit" class="form-control" />
+                    <span asp-validation-for="Vehicle.DailyKmLimit" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                    şimdiki km
+                </div>
+                <div class="col-8">
+                    <input asp-for="Vehicle.CurrentKm" class="form-control" />
+                    <span asp-validation-for="Vehicle.CurrentKm" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                    Airbag
+                </div>
+                <div class="col-8">
+                    <input asp-for="Vehicle.AirBag" class="form-control" />
+                    <span asp-validation-for="Vehicle.AirBag" class="text-danger"></span>
+                </div>
+            </div>
+
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                    bagj kapasitesi
+                </div>
+                <div class="col-8">
+                    <input asp-for="Vehicle.BaggageCapacity" class="form-control" />
+                    <span asp-validation-for="Vehicle.BaggageCapacity" class="text-danger"></span>
+                </div>
+            </div>
+
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                    koltuk sayısı
+                </div>
+                <div class="col-8">
+                    <input asp-for="Vehicle.SeatCount" class="form-control" />
+                    <span asp-validation-for="Vehicle.SeatCount" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                    günlük kiralık fiyat
+                </div>
+                <div class="col-8">
+                    <input asp-for="Vehicle.DailyRentalPrice" class="form-control" />
+                    <span asp-validation-for="Vehicle.DailyRentalPrice" class="text-danger"></span>
+                </div>
+            </div>
+
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                    Adet
+                </div>
+                <div class="col-8">
+                    <input asp-for="Vehicle.Quantity" class="form-control" />
+                    <span asp-validation-for="Vehicle.Quantity" class="text-danger"></span>
+                </div>
+            </div>
+
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                    resim
+                </div>
+                <div class="col-8">
+                    <input type="file" name="files" id="uploadBox" multiple class="form-control" />
+                    <span asp-validation-for="Vehicle.CarName" class="text-danger"></span>
+                </div>
+            </div>
+
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                    Firmalar
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.Vehicle.CategoryId, Model.CategoryList, "--Firma seç--", new { @class = "form-control" })
+                    <span asp-validation-for="Vehicle.CategoryId" class="text-danger"></span>
+                </div>
+            </div>
+
+
+
+            <div class="form-group row">
+                <div class="col-8 offset-4">
+                    @if (Model.Vehicle.Id != 0)
+                    {
+                        <partial name="_EditAndBack" model="Model.Vehicle.Id" />
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button onclick="return validateInput()" type="submit" class="btn-secondary">Ekle</button>
+                            </div>
+                            <div class="col-md-6">
+                                <a asp-action="Index" class="btn-success">Kayıt Listesi</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        @if (Model.Vehicle.Id!=0)
+        {
+            <div class="col-md-3">
+                <img src="@Model.Vehicle.İmageUrl" width="250" height="250" />
+            </div>
+        }
+
+
+
+
+
+    </div>
+</form>
+
+@section Scripts{
+<partial name="_ValidationScriptsPartial" />
+<script>
+    function validateInput() {
+        if (document.getElementById("uploadBox").value=="") {
+            swal("Hata", "Resim Seç", "hata");
+            return false;
+        }
+        return true;
+    }
+</script>
+ }

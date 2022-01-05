@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var status = Context.Request.Query["status"];
+    var beklenen = "text-primary";
+    var onaylanan = "text-primary";
+    var teslimyolda  = "text-primary";
+    var hepsi = "text-primary";
+    switch (status)
+    {
+        case "beklenen":
+            beklenen = "activite text-white";
+            break;
+
+        case "onaylanan":
+            onaylanan = "activite text-white";
+            break;
+        case "teslimyolda":
+            teslimyolda = "activite text-white";
+            break;
+        default:
+
+            hepsi = "activite text-white";
+  break;
+    }
+}
+
+<div class="border p-3">
+    <div class="d-flex justify-content-between mb-3">
+        <div class="p-2">
+            <h2 class="text-warning">Kiralanan Araçların Listesi</h2>
+        </div>
+        <div class="p-2">
+            <ul class="list-group list-group-horizontal-sm">
+                <a style="text-decoration:none;" asp-controller="Order"
+                   asp-action="Index" asp-route-status="onaylanan">
+                <li class="list-group-item @onaylanan">Onaylananlar<li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Order"
+                   asp-action="Index" asp-route-status="beklenen">
+                <li class="list-group-item @beklenen">Beklenenler</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Order"
+                   asp-action="Index" asp-route-status="teslimyolda">
+                <li class="list-group-item @teslimyolda">Teslime Çıkanlar</li>
+                </a>
+
+                <a style="text-decoration:none;" asp-controller="Order"
+                   asp-action="Index" asp-route-status="hepsi">
+                <li class="list-group-item @hepsi">Kiralanan Araçlar</li>
+                </a>
+            </ul>
+        </div>
+    </div>
+    <br /> <br />
+    <table id="tblData" class="table table-striped table-bordered" style="width:100%">
+        <thead class="thead-dark">
+            <tr class="table-info">
+                <th>Ad</th>
+                <th>Soyad</th>
+                <th>Email</th>
+                <th>Sipariş Durumu</th>
+                <th>Miktar</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+
+</div>
+
+@section Scripts{
+<script src="~/js/order.js"></script>
+ }

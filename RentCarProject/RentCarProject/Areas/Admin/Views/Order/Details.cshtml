@@ -1,0 +1,211 @@
+﻿@model RentCarProject.Models.ViewModels.OrderDetailsVM
+@using RentCarProject.Diger
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<form method="post">
+    <input  hidden  asp-for="OrderHeader.Id"/>
+
+    <br />
+    <div class="backgroundWhite container">
+        <div class="card">
+            <div class="card-header bg-dark text-light ml-0 row container">
+                <div class="col-12 d-none d-md-block col-md-6 pb-1">
+                    <i class="fas fa-shopping-cart"></i> &nbsp; Sipariş Özeti
+                </div>
+                <div class="col-12 col-md-4 offset-md-2 text-right">
+                    <a asp-area="Admin" asp-controller="Order" asp-action="Index" class="btn btn-outline-info form-control btn-sm">Sipariş Sayfasına Git</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="container rounded p-2">
+                    <div class="row">
+                        <div class="col-12 col-lg-6 pb-4">
+                            <div class="row">
+                                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="text-primary">Sipariş Detay</span>
+                                </h4>
+                            </div>
+                            <div class="row my-1">
+                                <div class="col-3">Ad</div>
+                                <div class="col-9">
+                                    @if (User.IsInRole(SD.Role_Admin))
+                                    {
+                                        <input asp-for="OrderHeader.Name" type="text" class="form-control" />
+                                    }
+                                    else
+                                    {
+                                        <input readonly asp-for="OrderHeader.Name" type="text" class="form-control" />
+                                    }
+                                    <input readonly type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row my-1">
+                                <div class="col-3">Soyad</div>
+                                <div class="col-9">
+                                    @if (User.IsInRole(SD.Role_Admin))
+                                    {
+                                        <input asp-validation-for="OrderHeader.Surname" asp-for="OrderHeader.Surname" type="text" class="form-control" />
+                                    }
+                                    else
+                                    {
+                                        <input readonly asp-for="OrderHeader.Surname" type="text" class="form-control" />
+                                    }
+                                 
+                                </div>
+                            </div>
+                            <div class="row my-1">
+                                <div class="col-3">Telefon</div>
+                                <div class="col-9">
+                                    @if (User.IsInRole(SD.Role_Admin))
+                                    {
+                                        <input asp-for="OrderHeader.PhoneNumber" type="text" class="form-control" />
+                                    }
+                                    else
+                                    {
+                                        <input readonly asp-for="OrderHeader.PhoneNumber" type="text" class="form-control" />
+                                    }
+
+                                </div>
+                            </div>
+                            <div class="row my-1">
+                                <div class="col-3">Adres</div>
+                                <div class="col-9">
+                                    @if (User.IsInRole(SD.Role_Admin))
+                                    {
+                                        <input asp-for="OrderHeader.Adres" type="text" class="form-control" />
+                                    }
+                                    else
+                                    {
+                                        <input readonly asp-for="OrderHeader.Adres" type="text" class="form-control" />
+                                    }
+                                </div>
+                            </div>
+                            <div class="row my-1">
+                                <div class="col-3">Alış tarihi</div>
+                                <div class="col-9">
+                                    @if (User.IsInRole(SD.Role_Admin))
+                                    {
+                                        <input asp-for="OrderHeader.RentDateStart" type="text" class="form-control" />
+                                    }
+                                    else
+                                    {
+                                        <input readonly asp-for="OrderHeader.RentDateStart" type="text" class="form-control" />
+                                    }
+                                </div>
+                            </div>
+                            <div class="row my-1">
+                                <div class="col-3">iade tarihi</div>
+                                <div class="col-9">
+                                    @if (User.IsInRole(SD.Role_Admin))
+                                    {
+                                        <input asp-for="OrderHeader.RentDateEnd" type="text" class="form-control" />
+                                    }
+                                    else
+                                    {
+                                        <input readonly asp-for="OrderHeader.RentDateEnd" type="text" class="form-control" />
+                                    }
+                     
+                                </div>
+                            </div>
+                            <div class="row my-1">
+                                <div class="col-3">Veriş Km</div>
+                                <div class="col-9">
+                                    @if (User.IsInRole(SD.Role_Admin))
+                                    {
+                                        <input asp-for="OrderHeader.FirstKM" type="text" class="form-control" />
+                                    }
+                                    else
+                                    {
+                                        <input readonly asp-for="OrderHeader.FirstKM" type="text" class="form-control" />
+                                    }
+                                    
+                                </div>
+                            </div>
+                            <div class="row my-1">
+                                <div class="col-3">Son Km</div>
+                                <div class="col-9">
+                                    @if (User.IsInRole(SD.Role_Admin))
+                                    {
+                                        <input asp-for="OrderHeader.LastKm" type="text" class="form-control" />
+                                    }
+                                    else
+                                    {
+                                        <input readonly asp-for="OrderHeader.LastKm" type="text" class="form-control" />
+                                    }
+                            
+                                </div>
+                            </div>
+                            <div class="row my-1">
+                                <div class="col-3">Sipariş Tarihi</div>
+                                <div class="col-9">
+                                    <input readonly value="@Model.OrderHeader.OrderDate.ToShortDateString()" type="text" class="form-control" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-12 col-lg-5 offset-lg-1">
+                            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="text-primary">Sipariş Özeti</span>
+                            </h4>
+                            <ul class="list-group mb-3">
+                                @foreach (var item in Model.OrderDetails)
+                                {
+
+
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <div class="row container">
+                                            <div class="col-6">
+                                                <input type="hidden" asp-for="@item.Id" />
+                                                <h6 class="my-0">@item.Vehicle.CarName </h6>
+                                                <small class="text-muted"> Fiyat (₺):@item.DailyRentalPrice</small>
+                                                <small class="text-muted">Adet:@item.Count </small>
+                                            </div>
+                                            <div class="col-6">
+                                                <h5 class="text-success">@(String.Format("{0:C}",item.Count*item.DailyRentalPrice))</h5>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                                <li class="list-group-item bg-info">
+                                    <div class="row container">
+                                        <div class="col-6">
+                                            <h5 class="text-white">Toplam Tutar: </h5>
+                                        </div>
+                                        <div class="col-6 text-right">
+                                            <h5 class="text-white"> @(String.Format("{0:C}",Model.OrderHeader.OrderTotal))</h5>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            @if (User.IsInRole(SD.Role_Admin))
+                            {
+                                <br />
+                                if (Model.OrderHeader.OrderStatus == SD.Durum_Onaylandı)
+                                {
+                                    <input type="submit" value="Kargoya Ver" class="btn btn-secondary form-control" formaction="/Admin/Order/KargoyaVer"
+                                           formmethod="post" />
+                                }
+
+                                if (Model.OrderHeader.OrderStatus == SD.Durum_Beklemede)
+                                {
+                                    <input type="submit" value="Onayla" class="btn btn-secondary form-control" formaction="/Admin/Order/Onaylandi"
+                                           formmethod="post" />
+                                }
+
+                            }
+                            else
+                            {
+                                <label class="btn btn-secondary form-control">@Model.OrderHeader.OrderStatus</label>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,118 @@
+﻿@model RentCarProject.Models.ViewModels.ReservationCartVM
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post">
+    <br />
+    @if (Model.ListCart.Count()>0)
+    {
+
+
+    <div class="backgroundWhiteBorder">
+        <div class="container">
+            <div class="card">
+                <div class="card-header bg-dark text-light ml-0 row container">
+                    <div class="col-6">
+                        <i class="fa fa-shopping-cart"></i> &nbsp;
+                        Rezervasyon Yapılacaklar
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    @foreach (var item in Model.ListCart)
+                    {
+                        <div class="row">
+                            <div class="d-none d-lg-block col-lg-1 text-center py-2">
+                                <img src="@item.Vehicle.İmageUrl" class="rounded" width="100%" />
+                            </div>
+                            <div class="col-12 text-sm-center col-lg-6 text-lg-left">
+                                <h5><strong>@item.Vehicle.CarName</strong></h5>
+                                <h5><strong>@item.Vehicle.CarModel</strong></h5>
+                                <p><small></small></p>
+                            </div>
+                            <div class="col-12 text-sm-center col-lg-5 text-lg-right row">
+                                <div class="col-4 text-md-right" style="padding-top:5px;">
+                                    <h6><strong>@item.Count <span class="text-muted">x</span> @item.Vehicle.DailyRentalPrice (₺) </strong></h6>
+                                </div>
+                                <div class="col-6 col-sm-4 col-lg-6">
+                                    <div class="float-right mx-1">
+                                        <a asp-action="plus" asp-route-cartId="@item.Id" class="btn btn-primary">
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+                                    </div>
+                                    <div class="float-right mx-1">
+                                        <a asp-action="minus" asp-route-cartId="@item.Id" class="btn btn-danger">
+                                            <i class="fas fa-minus"></i>
+                                            </a>
+                                    </div>
+                                </div>
+                                <div class="col-2 col-sm-4 col-lg-2 text-right">
+                                    <a asp-action="remove" asp-route-cartId="@item.Id" class="btn btn-danger">
+                                        <i class="fas fa-trash"></i>
+                                        </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-12 col-md-6 offset-md-6 col-lg-4 offset-lg-8 pr-4">
+                            <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between bg-light">
+                                    <span class="text-info"> Alınacak kapora ücreti (₺)</span>
+
+                                    <strong class="text-info"><span id="txtOrderTotal">@Model.OrderHeader.OrderTotal ₺</span></strong>
+                                    <p>Kalan ücret araba tesliminde peşin alınacaktır</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="card-footer row">
+                        <div class="col-md-6">
+
+                            <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-primary form-control text-white">Başka Rezervasyon Ekle </a>
+                        </div>
+
+
+                        @if (!Model.OrderHeader.ApplicationUser.EmailConfirmed)
+                        {
+                            <div class="col-md-4 text-danger">
+                                Devam etmek için Emailinizi onaylayınız..
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-warning form-control text-white">Email onayla</button>
+                            </div>
+                        }
+                        else
+                        {
+                        <div class="col-md-6">
+ 
+                        <a asp-area="Customer" asp-controller="Cart" asp-action="Summary" class="btn btn-success form-control text-white">Rezervasyonu Onayla</a>
+
+                        </div>
+                          }
+
+
+
+
+
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    }
+    else
+    {
+        <div>Rezervasyonda bulunmadınız</div>
+    }
+</form>
+
+

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<RentCarProject.Models.Category>
+
+
+    <div class="col-md-3">
+        <div class="list-group">
+            <a  asp-action="Index" asp-controller="Home"  class="list-group-item list-group-item-action btn-warning @(ViewBag.KategoryId==null?"active":"") " aria-current="true">
+                Tüm Firmalar
+            </a>
+            @foreach (var item in Model)
+            {
+                <a asp-action="CategoryDetails" class="list-group-item list-group-item-action btn-warning   @(ViewBag.KategoryId?.ToString()==item.Id.ToString()?"active":"")" asp-route-id="@item.Id">@item.Name</a>
+            }
+
+
+        </div>
+    </div>
+

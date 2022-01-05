@@ -1,0 +1,128 @@
+﻿@page
+@model RegisterModel
+@using RentCarProject.Diger
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="py-4">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="row form-group">
+        <div class="col-8 offset-2">
+            <div class="card">
+                <div class="card-body px-lg-5 pt-4">
+                    <form autocomplete="off" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                        <h3 class="col-12 text-success text-center py-4">
+                            <strong>Üye Ol</strong>
+                        </h3>
+                        <hr />
+                        <div class="py-2">
+                            <input asp-for="Input.Name"    placeholder="Ad" class="form-control" />
+                            <span asp-validation-for="Input.Name" class="text-danger"></span>
+                        </div>
+                        <div class="py-2">
+                            <input asp-for="Input.Surname"  placeholder="Soyad" class="form-control" />
+                            <span asp-validation-for="Input.Surname" class="text-danger"></span>
+                        </div>
+                        <div class="py-2">
+                            <input asp-for="Input.Email"  type="email" placeholder="Email" class="form-control" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="py-2 input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> 90</span>
+                            </div>
+                            <input asp-for="Input.TelefonNo"  type="text" placeholder="Telefon No" class="form-control" />
+                            <span asp-validation-for="Input.TelefonNo" class="text-danger"></span>
+                        </div>
+                        <div class="py-2">
+                            <input asp-for="Input.Adres"  placeholder="Adres" class="form-control" />
+                            <span asp-validation-for="Input.Adres" class="text-danger"></span>
+                        </div>
+                        <div class="py-2">
+                            <input asp-for="Input.Semt"  placeholder="Semt" class="form-control" />
+                            <span asp-validation-for="Input.Semt" class="text-danger"></span>
+                        </div>
+                        <div class="form-row py-2">
+                            <div class="col">
+                                <input asp-for="Input.Sehir"  placeholder="Şehir" class="form-control" />
+                                <span asp-validation-for="Input.Sehir" class="text-danger"></span>
+                            </div>
+                            <div class="col">
+                                <input asp-for="Input.PostaKodu"  placeholder="Posta Kodu" class="form-control" />
+                                <span asp-validation-for="Input.PostaKodu" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-row py-2">
+                            <div class="col">
+                                <input asp-for="Input.Password"  type="password" placeholder="Şifre" class="form-control" />
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                            <div class="col">
+                                <input asp-for="Input.ConfirmPassword"  type="password" placeholder="Şifre Tekrar" class="form-control" />
+                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        @if (User.IsInRole(SD.Role_Admin))
+                        {
+                            <div class="form-group">
+                                <label asp-for="Input.Role"></label>
+                                @Html.DropDownListFor(m=>m.Input.Role,Model.Input.RoleList,"--Rol seç", new {@class="form-control"})
+                            </div>
+                        }
+                        <div class="py-2">
+                            <button type="submit" class="btn btn-success form-control">Üye Ol</button>
+                        </div>
+                    </form>
+
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div class="row">
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins)
+                                {
+                                    <div class="col-6">
+                                        @if (provider.Name.ToLower().Contains("facebook"))
+                                        {
+                                            <button type="submit" class="btn btn-block facebook-btn form-control"
+                                                    name="provider" value="@provider.Name"
+                                                    title="Log in using your @provider.DisplayName account">
+                                                <i class="fab fa-facebook-square"></i> @provider.DisplayName
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            @if (provider.Name.ToLower().Contains("google"))
+                                            {
+                                                <button type="submit" class="btn btn-block google-btn form-control"
+                                                        name="provider" value="@provider.Name"
+                                                        title="Log in using your @provider.DisplayName account">
+                                                    <i class="fab fa-google"></i> @provider.DisplayName
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button type="submit" class="btn btn-primary" name="provider"
+                                                        value="@provider.Name"
+                                                        title="Log in using your @provider.DisplayName account">
+                                                    @provider.DisplayName
+                                                </button>
+                                            }
+                                        }
+                                    </div>
+                                }
+                            </p>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
