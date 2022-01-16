@@ -1,6 +1,11 @@
 # RentCar
  
  ASP NET Core MVC 5 | N Katmanlı Mimari | Generic Repository | Unit of Work kullanıldı
+ 
+ 
+ 
+ 
+ 
  Area kullanımı:
  ![Untitled Diagram drawio (1)](https://user-images.githubusercontent.com/85437211/148270798-7dff0596-b780-441c-b264-9a380e026a91.png)
 
