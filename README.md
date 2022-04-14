@@ -1,6 +1,6 @@
 # RentCar
  
- ASP NET Core MVC 5 | N Katmanlı Mimari | Generic Repository | Unit of Work kullanıldı
+ ASP NET Core MVC 5 | N Katmanlı Mimari | Generic Repository | Unit of Work kullanıldı.
  
  
  
