@@ -29,7 +29,7 @@ Ayrıca müşterilerin özlük bilgileri (ad, soyad vb.) bulunur.
 - **Desenler**: Generic Repository, Unit of Work
 
 ---
-
+![image](https://user-images.githubusercontent.com/85437211/148270503-5f702f2a-904e-44a5-9762-49e7ee3d5c49.png)
 ## 📂 Proje Yapısı
 Fonksiyonel Olmayan Gereksinimler
 Sistem geliştirilirken sizlerden beklenen fonksiyonel olmayan teknik gereksinimler aşağıdaki gibidir:
@@ -60,7 +60,7 @@ Proje aşağıdaki ana dosya ve klasörleri içerir:
  Area kullanımı:
  ![Untitled Diagram drawio (1)](https://user-images.githubusercontent.com/85437211/148270798-7dff0596-b780-441c-b264-9a380e026a91.png)
 
-![image](https://user-images.githubusercontent.com/85437211/148270503-5f702f2a-904e-44a5-9762-49e7ee3d5c49.png)
+
 
 ![image](https://user-images.githubusercontent.com/85437211/148450815-c7045027-70d8-427b-94a3-f4a90d995bab.png)
 
